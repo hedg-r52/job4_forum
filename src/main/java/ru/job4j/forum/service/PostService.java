@@ -1,58 +1,43 @@
 package ru.job4j.forum.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.store.PostRepository;
 
-import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
 
-    private final List<Post> posts = new ArrayList<>();
+    private final PostRepository posts;
 
-    public PostService() {
-        posts.add(Post.of("Продаю машину ладу 01."));
+    public PostService(PostRepository posts) {
+        this.posts = posts;
     }
 
     public void add(Post post) {
-        post.setId(maxId() + 1);
-        posts.add(post);
+        posts.save(post);
     }
 
     public void update(Post post) {
-        posts.set(getIndexById(post.getId()), post);
+        Optional<Post> optionalPost = posts.findById(post.getId());
+        if (optionalPost.isPresent()) {
+            Post p = optionalPost.get();
+            BeanUtils.copyProperties(post, p, "id");
+            posts.save(p);
+        }
     }
 
-    public Post get(int id) {
-        for (Post p : posts) {
-            if (p.getId() == id) {
-                return p;
-            }
-        }
-        return null;
+    public Post get(long id) {
+        return posts.findById(id).orElseThrow();
     }
 
     public List<Post> getAll() {
-        return posts;
-    }
-
-    private int getIndexById(int id) {
-        int result = -1;
-        for (Post p : posts) {
-            if (p.getId() == id) {
-                result = id;
-                break;
-            }
-        }
+        List<Post> result = new ArrayList<>();
+        posts.findAll().forEach(result::add);
         return result;
-    }
-
-    private Integer maxId() {
-        return posts.stream()
-                .map(Post::getId)
-                .max(Integer::compare)
-                .orElse(0);
     }
 }

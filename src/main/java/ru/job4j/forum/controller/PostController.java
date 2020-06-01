@@ -32,7 +32,7 @@ public class PostController {
     }
 
     @GetMapping("/post/update")
-    public ModelAndView showUpdateForm(@RequestParam int id) {
+    public ModelAndView showUpdateForm(@RequestParam long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("post", postService.get(id));
         modelAndView.setViewName("edit");
