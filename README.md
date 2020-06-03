@@ -27,3 +27,9 @@ Repository contains implementation simple model of forum which demonstrate worki
 
 ![](./images/add.png)
 
+#### Logout and Internationalization
+
+![](./images/logout.png) 
+
+![](./images/logout_ru.png)
+
