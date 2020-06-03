@@ -40,4 +40,8 @@ public class PostService {
         posts.findAll().forEach(result::add);
         return result;
     }
+
+    public void delete(long id) {
+        posts.findById(id).ifPresent(posts::delete);
+    }
 }

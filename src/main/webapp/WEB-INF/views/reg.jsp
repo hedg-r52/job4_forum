@@ -32,9 +32,8 @@
             </div>
         </div>
         <div  class="row">
-            <input class="btn btn-outline-primary" name="submit" type="submit" value="sign in" style="margin: 10px"/>
-            <button type="button" class="btn btn-outline-primary" onclick="location.href = '<%=request.getContextPath()%>'" style="margin: 10px">Go back
-            </button>
+            <input class="btn btn-outline-primary" name="submit" type="submit" value="Register" style="margin: 10px"/>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href = '/'" style="margin: 10px">Go back</button>
         </div>
    </form>
 </div>
