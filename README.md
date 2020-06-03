@@ -3,3 +3,27 @@
 
 # Forum (Spring Boot App)
 
+Repository contains implementation simple model of forum which demonstrate working with Spring Boot. 
+                         
+#### Project's features:
+- using Spring Boot;
+- JPA entities store into PostgreSQL DB;
+- authorization via Spring Security with registration form;
+- added internationalization.
+
+#### Login form
+
+![](images/login.png)
+
+#### Registration form
+
+![](images/reg.png)
+
+#### Index page
+
+![](./images/index.png)
+
+#### Adding new post
+
+![](./images/add.png)
+
