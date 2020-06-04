@@ -13,23 +13,23 @@ Repository contains implementation simple model of forum which demonstrate worki
 
 #### Login form
 
-![](images/login.png)
+<img src="images/login.png" width="200">
 
 #### Registration form
 
-![](images/reg.png)
+<img src="images/reg.png" width="200">
 
 #### Index page
 
-![](./images/index.png)
+<img src="images/index.png" width="200">
 
 #### Adding new post
 
-![](./images/add.png)
+<img src="images/add.png" width="200">
 
 #### Logout and Internationalization
 
-![](./images/logout.png) 
+<img src="images/logout.png" width="200">
 
-![](./images/logout_ru.png)
+<img src="images/logout_ru.png" width="200">
 
