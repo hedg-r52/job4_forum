@@ -13,7 +13,7 @@ public class IndexController {
         this.posts = posts;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "/index"})
     public String index(Model model) {
         model.addAttribute("posts", posts.getAll());
         return "index";
