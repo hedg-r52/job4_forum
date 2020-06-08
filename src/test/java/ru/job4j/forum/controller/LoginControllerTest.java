@@ -16,18 +16,18 @@ import ru.job4j.forum.Main;
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
-public class IndexControllerTest {
+public class LoginControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @WithMockUser
-    public void shouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("/index"))
+    public void whenGetLoginShouldReturnLoginPage() throws Exception {
+        this.mockMvc.perform(get("/login"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("login"));
     }
 
 }
