@@ -7,7 +7,7 @@ jdk:
   - openjdk11
 
 services:
-  - postgresql
+#  - postgresql
 
 env:
   global:
