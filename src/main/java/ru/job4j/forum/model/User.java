@@ -2,8 +2,8 @@ package ru.job4j.forum.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,7 +18,7 @@ public class User implements Serializable {
     @OneToMany(fetch = FetchType.LAZY,
             mappedBy = "user",
             cascade = CascadeType.ALL)
-    private Set<Role> roles;
+    private List<Role> roles;
 
     public long getId() {
         return id;
@@ -40,7 +40,7 @@ public class User implements Serializable {
         return password;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
@@ -56,7 +56,7 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

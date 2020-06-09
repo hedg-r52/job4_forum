@@ -50,42 +50,12 @@
                 </div>
                 <label for="roles" class="mr-sm-2">Roles : </label>
                 <div id="roles">
-                    USER: <form:checkbox class="form-control _margin10" path="roles" id="roleuser" value="ROLE_USER"/>
-                    ADMIN: <form:checkbox class="form-control _margin10" path="roles" id="roleadmin" value="ROLE_ADMIN"/>
+                    <form:checkboxes path="roles" items="${allRoles}" />
                 </div>
-                <button type="submit" class="btn btn-outline-primary _margin10" formaction="/user/update">Update
-                </button>
-                <button type="submit" class="btn btn-outline-primary _margin10" formaction="/user/delete">Delete
+                <button type="submit" class="btn btn-outline-primary _margin10" formaction="/users/update">Update
                 </button>
             </div>
         </form:form>
-    </div>
-    <div class="user-list">
-        <div class="row">
-            <table id="table" class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Enabled</th>
-                    <th scope="col">Roles</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${users}" var="user">
-                    <tr data-row-id="${user.id}">
-                        <td><c:out value="${user.username}"/></td>
-                        <td><c:out value="${user.enabled}"/></td>
-                        <td>
-                            <c:forEach items="${user.roles}" var="role">
-                                <c:out value="${role.authority}"/>
-                                <c:out value=" "/>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 <!-- Optional JavaScript -->
@@ -97,28 +67,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script>
-    $("#table tr").click(function () {
-        $(this).addClass('selected').siblings().removeClass('selected');
-        var value = $(this).find('td:first').html();
-        $tds = $(this).find("td");
-        document.getElementById("username").value = $tds[0].firstChild.textContent;
-        document.getElementById("enabled").checked = ($tds[1].firstChild.textContent === 'true');
-        document.getElementById("id").value = $(this).attr("data-row-id");
-        $user_roles = $tds[2].firstChild.textContent;
-        $('#roleuser').prop("checked", $user_roles.indexOf("ROLE_USER") !== -1);
-        $('#roleadmin').prop("checked", $user_roles.indexOf("ROLE_ADMIN") !== -1);
-
-    });
-    $('.updateUser').on('click', function () {
-
-    });
-    $('.deleteUser').on('click', function () {
-
-    });
-    role_user = {
-
-    }
-</script>
 </body>
 </html>
