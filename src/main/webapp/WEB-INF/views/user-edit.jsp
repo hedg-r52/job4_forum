@@ -31,7 +31,6 @@
         <%--@elvariable id="user" type="ru.job4j.forum.model.User"--%>
         <form:form class="form-inline" method="POST" modelAttribute="user">
             <div class="input-group mb-3" style="margin-top: 20px">
-                <form:input type="hidden" id="id" path="id"/>
                 <div>
                     <label for="username" class="mr-sm-2">Username : </label>
                     <form:input type="text" class="form-control _margin10" id="username" path="username"
@@ -50,7 +49,10 @@
                 </div>
                 <label for="roles" class="mr-sm-2">Roles : </label>
                 <div id="roles">
-                    <form:checkboxes path="roles" items="${allRoles}" />
+<%--                    <c:forEach items="${allRoles}" var="r" varStatus="status">--%>
+<%--                        <form:checkbox path="authorities" items="${allRoles}" value="${r.id}" label="${r.authority}"/>--%>
+<%--                    </c:forEach>--%>
+                    <form:checkboxes path="authorities" items="${allRoles}" />
                 </div>
                 <button type="submit" class="btn btn-outline-primary _margin10" formaction="/users/update">Update
                 </button>

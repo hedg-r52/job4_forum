@@ -40,19 +40,19 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${users}" var="user">
-                    <tr data-row-id="${user.id}">
+                    <tr data-row-username="${user.username}">
                         <td><c:out value="${user.username}"/></td>
                         <td><c:out value="${user.enabled}"/></td>
                         <td>
-                            <c:forEach items="${user.roles}" var="role">
+                            <c:forEach items="${user.authorities}" var="role">
                                 <c:out value="${role.authority}"/>
                                 <c:out value=" "/>
                             </c:forEach>
                         </td>
                         <td>
 
-                            <button type="button" class="btn btn-outline-primary _margin10" onclick="location.href = '/users/update?id=' + ${user.id}">Edit</button>
-                            <button type="submit" class="btn btn-outline-primary _margin10 deleteUser" formaction="/user/delete" data-user-id="${user.id}">Delete</button>
+                            <button type="button" class="btn btn-outline-primary _margin10" onclick="location.href = '/users/update?username=${user.username}';">Edit</button>
+                            <button type="submit" class="btn btn-outline-primary _margin10 deleteUser" formaction="/user/delete" data-user-name="${user.username}">Delete</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -73,10 +73,10 @@
 </body>
 <script>
     $('.deleteUser').on('click', function () {
-        const userId = $(this).attr('data-user-id');
+        const userName = $(this).attr('data-user-name');
         $.ajax({
             type: 'DELETE',
-            url: '/users/' + userId,
+            url: '/users/' + userName,
             success: function (result) {
                 window.location='/users';
             },

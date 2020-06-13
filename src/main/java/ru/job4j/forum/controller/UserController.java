@@ -9,7 +9,6 @@ import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.UserService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -19,10 +18,10 @@ public class UserController {
         this.users = users;
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/users/{userName}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable long id) {
-        users.delete(id);
+    public void deleteUser(@PathVariable String userName) {
+        users.delete(userName);
     }
 
     @GetMapping("/users")
@@ -34,24 +33,19 @@ public class UserController {
     }
 
     @GetMapping("/users/update")
-    public ModelAndView updateUser(@RequestParam long id) {
+    public ModelAndView updateUser(@RequestParam String username) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("user", users.findById(id));
+        modelAndView.addObject("user", users.getUserByUsername(username));
+        modelAndView.addObject("allRoles", Role.values());
+        modelAndView.addObject("selectedRoles", new ArrayList<Role>());
         modelAndView.setViewName("user-edit");
         return modelAndView;
     }
 
     @PostMapping("/users/update")
     public String updateUser(@ModelAttribute("user") User user) {
-        this.users.update(user.getId(), user);
+        this.users.update(user);
         return "redirect:/users";
     }
 
-    @ModelAttribute("allRoles")
-    public List<Role> getAllRoles() {
-        List<Role> allRoles = new ArrayList<>();
-        allRoles.add(new Role("ROLE_USER"));
-        allRoles.add(new Role("ROLE_ADMIN"));
-        return allRoles;
-    }
 }

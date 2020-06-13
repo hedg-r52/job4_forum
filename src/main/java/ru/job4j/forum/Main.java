@@ -10,11 +10,15 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.converter.ConverterRegistry;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import ru.job4j.forum.converter.RoleEnumConverter;
 
 import javax.sql.DataSource;
 import java.util.Locale;
@@ -29,6 +33,10 @@ public class Main extends SpringBootServletInitializer implements WebMvcConfigur
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+
+        ConversionService conversionService = DefaultConversionService.getSharedInstance();
+        ConverterRegistry converters = (ConverterRegistry) conversionService;
+        converters.addConverter(new RoleEnumConverter());
     }
 
     @Bean
