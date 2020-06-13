@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import ru.job4j.forum.model.Authority;
 import ru.job4j.forum.model.Role;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.UserService;
@@ -43,7 +44,11 @@ public class UserController {
     }
 
     @PostMapping("/users/update")
-    public String updateUser(@ModelAttribute("user") User user) {
+    public String updateUser(@ModelAttribute("user") User user, @RequestParam(value = "selectedRoles", required = false) String[] selectedRoles) {
+        user.getAuthorities().clear();
+        for(String role : selectedRoles) {
+            user.addAuthority(new Authority(user, Role.valueOf(role)));
+        }
         this.users.update(user);
         return "redirect:/users";
     }

@@ -1,5 +1,7 @@
 package ru.job4j.forum.model;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,7 +16,6 @@ public class User implements UserDetails {
 
 
     @Id
-    @Column(name = "username", nullable = false)
     private String username;
     private String password;
     private boolean enabled = true;

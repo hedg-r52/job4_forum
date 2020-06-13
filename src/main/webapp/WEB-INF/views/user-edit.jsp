@@ -47,12 +47,14 @@
                         <label class="custom-control-label" for="enabled">enabled</label>
                     </div>
                 </div>
-                <label for="roles" class="mr-sm-2">Roles : </label>
-                <div id="roles">
-<%--                    <c:forEach items="${allRoles}" var="r" varStatus="status">--%>
-<%--                        <form:checkbox path="authorities" items="${allRoles}" value="${r.id}" label="${r.authority}"/>--%>
-<%--                    </c:forEach>--%>
-                    <form:checkboxes path="authorities" items="${allRoles}" />
+                <label for="div-roles" class="mr-sm-2">Roles : </label>
+                <div id="div-roles">
+                    <c:forEach items="${allRoles}" var="r" varStatus="status">
+                        <div>
+                            <c:out value="${r.name()}" />
+                            <input type="checkbox" name="selectedRoles" value="${r.name()}"/>
+                        </div>
+                    </c:forEach>
                 </div>
                 <button type="submit" class="btn btn-outline-primary _margin10" formaction="/users/update">Update
                 </button>
