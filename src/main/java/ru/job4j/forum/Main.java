@@ -1,5 +1,6 @@
 package ru.job4j.forum;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +30,14 @@ public class Main extends SpringBootServletInitializer implements WebMvcConfigur
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    @Bean
+    public SpringLiquibase liquibase(DataSource ds) {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
+        liquibase.setDataSource(ds);
+        return liquibase;
     }
 
     @Bean
