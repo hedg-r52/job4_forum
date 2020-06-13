@@ -7,14 +7,14 @@ jdk:
   - openjdk11
 
 services:
-#  - postgresql
+  - postgresql
 
 env:
   global:
     - CODECOV_TOKEN="aa041aef-e23d-4e99-99f7-c6fd73ef07c1"
 
 before_install:
-#  - psql -c 'create database tracker;' -U postgres
+  - psql -c 'create database forum;' -U postgres
 
 cache:
   directories:
