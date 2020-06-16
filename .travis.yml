@@ -3,6 +3,10 @@ language: java
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
+install: true
+
+script: mvn clean package -DskipTests=true
+
 jdk:
   - openjdk11
 
@@ -32,3 +36,9 @@ notifications:
       - hedg.r52@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: MBV3ov4wYHsA+qRuHGfMYJxGLeZ5QpdHMWEXtr6cDsmKYiK0iWvhtsQbu/nELaIro/cuWFsMevCGoS+iMtqxxdkmIVGA0bj2xw60enAyH37zr1bCmZQoRwHo9woaxe6z6Ba3bguqKLbaTCbFxclLkau6lVLVLwqU4qIYFNZRVoA+SDzOdJTqnmnAgExzYCGqVWOxufjTvw8Q+u7nm6NvnpGnWzrKXtNWqWJS99idI1uep4zqhre7NprQ9qZMBOEzHjK3JNrphThfZ6P1USwhjBOZKhgfG+BVdHiHOVvQZu11JpPyO5x4VMRPtsNiecrQriBoE74JVTc/7Ur/qyh94ngMCd1xSsxSjvt17Ii/Y0NEYH/7DXnTdjFwi0vTkkdfFjw+VPTRqdPqZecfWI/BIGihupxGTY2D5Vj1AERLeUMz5W9hOShNRUV1GHU+XvmkaJATAHM7Wrrg9fJ2IAeodvDNqzqXQajF7GCOE9J4eFsTX4kFV4aXjZ6OHKSGULW/ABIBy7M9CySz7e3sijnYWwGb+BD7hkEX+BssDTvcXNS5iNpmOUqJ+x8AUK9xvHLBW0+V+uX5b3Sf07JSzclicrf3FRMHZmiJxbHT88S+E+bSXEqaFeWRiZE2S4+ikpx81Iw+0TCcASBajPYY66RZO9IdRYBqJtRZoMlg7lyRNk4=
+  app: desolate-fortress-67168
